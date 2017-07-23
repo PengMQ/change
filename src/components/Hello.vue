@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="img-present">
-      <img src="" alt="" id="target-img">
+      <img src="" alt="" id="targetImg">
     </div>
 
   </div>
@@ -39,9 +39,9 @@
         context.drawImage(imgHead, 500, 828);
         context.drawImage(imgHead, 310, 1100);
 
-//        var imgUrl = palette.toDataURL('image/png');
-//        var targetImg = document.querySelector('#targetImg');
-//        targetImg.src = imgUrl;
+        var imgUrl = palette.toDataURL('image/png');
+        var targetImg = document.querySelector('#targetImg');
+        targetImg.src = imgUrl;
       }
     }
   }
