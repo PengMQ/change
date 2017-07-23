@@ -1,53 +1,67 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <div class="img-process-section">
+      <img src="./img/demohead.png" alt="head" id="imgHead" class="img-head">
+      <img src="./img/demobg.png" alt="bg" class="img-bg" id="imgBg">
+      <div class="canvas-container">
+        <canvas id="palette" width="750px" height="1334px">your browser does not support canvas</canvas>
+      </div>
+    </div>
+    <div class="img-present">
+      <img src="" alt="" id="target-img">
+    </div>
+
   </div>
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  export default {
+    name: 'hello',
+    data() {
+      return {
+        msg: 'Welcome to Your Vue.js App'
+      }
+    },
+    mounted: function () {
+      var palette = document.querySelector('#palette');
+      if (palette.getContext) {
+        var context = palette.getContext('2d');
+        var imgBg = document.querySelector('#imgBg');
+        var imgHead = document.querySelector('#imgHead');
+        context.drawImage(imgBg, 0, 0);
+
+        context.drawImage(imgHead, 310, 29);
+        context.drawImage(imgHead, 52, 306);
+        context.drawImage(imgHead, 500, 306);
+        context.drawImage(imgHead, 300, 570);
+        context.drawImage(imgHead, 754, 615);
+        context.drawImage(imgHead, 52, 828);
+        context.drawImage(imgHead, 500, 828);
+        context.drawImage(imgHead, 310, 1100);
+
+//        var imgUrl = palette.toDataURL('image/png');
+//        var targetImg = document.querySelector('#targetImg');
+//        targetImg.src = imgUrl;
+      }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  .img-head, .img-bg {
+    position: absolute;
+    visibility: hidden;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  .canvas-container {
+    border: 1px solid green;
+    width: 100%;
+    height: 100%;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  #palette {
+    width: 100%;
+  }
 
-a {
-  color: #42b983;
-}
 </style>
