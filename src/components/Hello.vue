@@ -11,6 +11,8 @@
       <img src="" alt="" id="targetImg">
     </div>
 
+    <button v-on:click="draw">draw</button>
+
   </div>
 </template>
 
@@ -23,25 +25,30 @@
       }
     },
     mounted: function () {
-      var palette = document.querySelector('#palette');
-      if (palette.getContext) {
-        var context = palette.getContext('2d');
-        var imgBg = document.querySelector('#imgBg');
-        var imgHead = document.querySelector('#imgHead');
-        context.drawImage(imgBg, 0, 0);
+    },
+    methods: {
+      draw: function () {
+        var palette = document.querySelector('#palette');
+        if (palette.getContext) {
+          var context = palette.getContext('2d');
+          var imgBg = document.querySelector('#imgBg');
+          var imgHead = document.querySelector('#imgHead');
+          context.drawImage(imgBg, 0, 0);
 
-        context.drawImage(imgHead, 310, 29);
-        context.drawImage(imgHead, 52, 306);
-        context.drawImage(imgHead, 500, 306);
-        context.drawImage(imgHead, 300, 570);
-        context.drawImage(imgHead, 754, 615);
-        context.drawImage(imgHead, 52, 828);
-        context.drawImage(imgHead, 500, 828);
-        context.drawImage(imgHead, 310, 1100);
+          context.drawImage(imgHead, 310, 29);
+          context.drawImage(imgHead, 52, 306);
+          context.drawImage(imgHead, 500, 306);
+          context.drawImage(imgHead, 300, 570);
+          context.drawImage(imgHead, 754, 615);
+          context.drawImage(imgHead, 52, 828);
+          context.drawImage(imgHead, 500, 828);
+          context.drawImage(imgHead, 310, 1100);
 
-        var imgUrl = palette.toDataURL('image/png');
-        var targetImg = document.querySelector('#targetImg');
-        targetImg.src = imgUrl;
+          var imgUrl = palette.toDataURL('image/png');
+          var targetImg = document.querySelector('#targetImg');
+          targetImg.src = imgUrl;
+        }
+
       }
     }
   }
@@ -49,7 +56,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .img-head, .img-bg {
+  .img-head, .img-bg, #palette {
     position: absolute;
     visibility: hidden;
   }
@@ -62,6 +69,12 @@
 
   #palette {
     width: 100%;
+  }
+
+  button {
+    font-size: 25px;
+    border: 1px solid;
+    padding: 10px;
   }
 
 </style>
