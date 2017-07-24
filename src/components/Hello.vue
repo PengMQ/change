@@ -8,10 +8,14 @@
       </div>
     </div>
     <div class="img-present">
-      <img src="" alt="" id="targetImg">
+      <img src="" alt="" id="targetImg" class="targetImg">
     </div>
 
     <button v-on:click="draw">draw</button>
+    <form action="">
+      <input type="text" v-model="type">
+    </form>
+    type {{type}}
 
   </div>
 </template>
@@ -21,10 +25,16 @@
     name: 'hello',
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your Vue.js App',
+        type: ''
       }
     },
     mounted: function () {
+      var imgBg = document.querySelector('#imgBg');
+      var self = this;
+      imgBg.onload = function () {
+        self.draw();
+      };
     },
     methods: {
       draw: function () {
@@ -34,6 +44,7 @@
           var imgBg = document.querySelector('#imgBg');
           var imgHead = document.querySelector('#imgHead');
           context.drawImage(imgBg, 0, 0);
+          console.log('context', context);
 
           context.drawImage(imgHead, 310, 29);
           context.drawImage(imgHead, 52, 306);
@@ -56,7 +67,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .img-head, .img-bg, #palette {
+  .img-head, .img-bg {
     position: absolute;
     visibility: hidden;
   }
@@ -75,6 +86,10 @@
     font-size: 25px;
     border: 1px solid;
     padding: 10px;
+  }
+
+  .targetImg {
+    width: 100%;
   }
 
 </style>
